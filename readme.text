@@ -1,0 +1,25 @@
+<div class="cards flex flex-wrap gap-10 px-10 mt-10">
+            <div class="card">
+                 <div class="  w-52 h-52 rounded-lg bg-zinc-200"></div>
+                 <h3 class="text-center text-xl font-semibold mt-3">All Pins</h3>
+                 <h5 class="text-sm font-medium opacity-60">28 Pins</h5>
+              </div>
+        
+           
+        </div>
+
+
+
+
+
+
+        router.post('/fileupload', loggedIn,upload.single('image'), async function(req, res, next) {
+  
+  const user=await user.findOne({
+    username:req.session.passport.user
+  });
+  user.profileImage=req.file.filename;
+  await user.save();
+  
+  res.send("profile");
+});
